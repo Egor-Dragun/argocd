@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-app
+  labels:
+    app: {{ .Values.name }}-app
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}-app
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}-app
+{{- with .Values.podAnnotations }}
+      annotations:
+{{- range $outerK, $outerV := . }}
+{{- if kindIs "map" $outerV }}
+{{- range $innerK, $innerV := $outerV }}
+        {{ printf "%s.%s" $outerK $innerK }}: {{ $innerV | quote }}
+{{- end }}
+{{- else }}
+        {{ $outerK }}: {{ $outerV | quote }}
+{{- end }}
+{{- end }}
+{{- end }}
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: {{ .Values.name }}-container
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ .Values.port }}
