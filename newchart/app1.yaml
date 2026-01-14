@@ -16,9 +16,9 @@ spec:
     helm:
       valuesFiles:
       - values-app1.yaml
-    parametrs:
-    - name: "container.image"
-      value: "narland/java:latest"
+    parameters:
+    - name: container.image
+      value: narland/java:latest
   project: default
   syncPolicy:
     automated:

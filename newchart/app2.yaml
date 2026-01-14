@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: myapp1-helm
+  name: myapp2-helm
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -16,9 +16,9 @@ spec:
     helm:
       valuesFiles:
       - values-app1.yaml
-    parametrs:
-    - name: "container.image"
-      value: "narland/java:latest"
+    parameters:
+    - name: container.image
+      value: narland/java:latest
   project: default
   syncPolicy:
     automated:
