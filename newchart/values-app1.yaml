@@ -2,7 +2,7 @@ name: app1
 host: project-local-egor.local
 image:
   repository: narland/java
-  tag: latest
+  tag: 2847cfee
 port: 8080
 replicas: 1
 
