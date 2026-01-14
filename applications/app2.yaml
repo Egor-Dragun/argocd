@@ -10,15 +10,12 @@ spec:
     name: in-cluster
     namespace: default
   source:
-    path: "argocd/newchart"
+    path: "newchart"
     repoURL: "https://github.com/Egor-Dragun/argocd"
     targetRevision: HEAD
     helm:
       valuesFiles:
       - values-app1.yaml
-    parameters:
-    - name: container.image
-      value: narland/java:latest
   project: default
   syncPolicy:
     automated:
