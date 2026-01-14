@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp1-helm
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    name: in-cluster
+    namespace: default
+  source:
+    path: "argocd/newchart"
+    repoURL: "https://github.com/Egor-Dragun/argocd"
+    targetRevision: HEAD
+    helm:
+      valuesFiles:
+      - values-app1.yaml
+    parametrs:
+    - name: "container.image"
+      value: "narland/java:latest"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    
