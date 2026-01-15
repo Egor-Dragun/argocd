@@ -12,7 +12,7 @@ spec:
         - alias: java-app
           imageName: narland/java
           commonUpdateSettings:
-            updateStrategy: latest
+            updateStrategy: newest-build
           manifestTargets:
             helm:
               name: image.repository
