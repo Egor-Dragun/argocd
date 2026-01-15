@@ -14,7 +14,7 @@ spec:
     repoURL: "https://github.com/Egor-Dragun/argocd"
     targetRevision: HEAD
     helm:
-      valuesFiles:
+      valueFiles:
       - values-app1.yaml
   project: default
   syncPolicy:
