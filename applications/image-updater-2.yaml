@@ -23,4 +23,4 @@ spec:
     gitConfig:
       repository: git@github.com:Egor-Dragun/argocd.git
       branch: HEAD
-      writeBackTarget: helmvalues:newchart/values-app2.yaml
+      writeBackTarget: helmvalues:values-app2.yaml
