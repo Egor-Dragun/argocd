@@ -1,0 +1,26 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: apps-image-updater
+  namespace: argocd
+spec:
+  namespace: argocd
+
+  applicationRefs:
+    - namePattern: "myapp1-helm"
+      images:
+        - alias: java-app
+          imageName: narland/java
+          commonUpdateSettings:
+            updateStrategy: newest-build
+          manifestTargets:
+            helm:
+              name: image.repository
+              tag: image.tag
+
+  writeBackConfig:
+    method: git
+    gitConfig:
+      repository: git@github.com:Egor-Dragun/argocd.git
+      branch: HEAD
+      writeBackTarget: helmvalues:newchart/values-app1.yaml
