@@ -2,7 +2,7 @@ name: app2
 host: project-local-egor2.local
 image:
   repository: narland/java
-  tag: 20260116073303-941b538439304c9314b970e839cea990acdc0649
+  tag: 20260116074328-633250fbad777e21d1ba3b376071086cdf6fdc07
 port: 8080
 replicas: 1
 ingress:
